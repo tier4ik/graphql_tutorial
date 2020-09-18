@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/tier4ik/graphql_tutorial#readme",
   "dependencies": {
-    "graphql-yoga": "^1.18.3"
+    "@prisma/client": "^2.7.1",
+    "bcryptjs": "^2.4.3",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.7.1"
   }
 }
