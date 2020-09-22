@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>FRONTEND</h1>
+    <button id="fd">Get feed</button><br>
+    <input type="number" name="userID" id="ipt"><button id="us">Get LINK by user`s id</button>
+    <script>
+        const button = document.querySelector('#fd');
+        const button_ = document.querySelector('#us');
+        button.addEventListener('click', async () => {
+            const response = await fetch('http://localhost:4000', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: `{ feed {
+                                                    count
+                                                    links {
+                                                        id
+                                                        description
+                                                        url
+                                                        }
+                                                    }
+                                                }`
+                }),
+            });
+            console.log(await response.json());
+        });
+
+        button_.addEventListener('click', async () => {
+            const id = document.querySelector('#ipt').value;
+            const response = await fetch('http://localhost:4000', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: `{link(id: ${id}){
+                    url
+                    description
+                }}`
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+        })
+    </script>
+</body>
+</html>

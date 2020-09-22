@@ -1,6 +1,6 @@
 type Query {
     info: String!
-    feed: [Link!]!
+    feed(filter: String, skip: Int, take: Int): Feed!
     link(id: ID!): Link
 }
 
@@ -17,6 +17,11 @@ type Link {
     description: String!
     url: String!
     postedBy: User
+}
+
+type Feed {
+  links: [Link!]!
+  count: Int!
 }
 
 type AuthPayload {
